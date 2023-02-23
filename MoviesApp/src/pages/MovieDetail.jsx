@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import userStore from '../config/UserStore'
+import '../styles/home2.css'
+import Navbar from '../components/Navbar'
 
 function MovieDetail () {
   const navigate = useNavigate()
@@ -27,37 +29,22 @@ function MovieDetail () {
   }, [])
 
   return (
-    <div className='flex flex-wrap gap-5'>
-      <>
-        <div>
-          <Link
-            data-id={movieId}
-            to='/movie_detail'
-            state={{ _id: movieId, title: movieTitle, description: movieDescription, likes: movieLikes, date: movieDate }}
-            className=' w-1/4 h-1/4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
-          >
-            <Link to='#'>
-              <img
-                className='rounded-t-lg w-4/5 pt-6 pr-5 py-6 pl-6 ml-12'
-                src={movieImage}
-                alt=''
-              />
-            </Link>
-            <div className='p-5'>
-              <div className='w-72'>
-                <h3 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
-                  {movieTitle}
-                </h3>
-              </div>
+    <>
+      <Navbar />
+      <div className='flex movie-detail-height items-center justify-center mx-auto background'>
 
-              <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>
-                {movieDescription}
-              </p>
-            </div>
-          </Link>
-        </div>
-      </>
-    </div>
+        <Link to='#' className='flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-4xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700'>
+          <img className='object-cover w-full rounded-t-lg md:h-full md:w-auto md:rounded-none md:rounded-l-lg' src={movieImage} alt='' />
+          <div className='flex flex-col justify-between p-4 leading-normal'>
+            <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>{movieTitle}</h5>
+            <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>{movieDescription}</p>
+          </div>
+        </Link>
+
+      </div>
+
+    </>
+
   )
 }
 
