@@ -1,0 +1,23 @@
+header {
+    height: 10vh;
+    width: 100%;
+}
+
+header img{
+    height: 38px;
+    padding-right: 10px;
+  }
+
+.btn-header-class {
+    width: 145px;
+}
+
+.btn-header-account {
+    width: 25px;
+    height: auto;
+    color: white;
+}
+
+.btn-header-container {
+    background-color: #0b5dd7e1;
+}
