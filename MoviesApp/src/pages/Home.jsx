@@ -40,7 +40,7 @@ function Home () {
             >
               <div className='max-w-xs w-72 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
                 <Link to='#'>
-                  <img className='rounded-t-lg max-h-max pt-6 pr-6 py-6 pl-6' src='https://www.lahiguera.net/cinemania/pelicula/10179/el_gato_con_botas_el_ultimo_deseo-cartel-10596.jpg' alt='' />
+                  <img className='rounded-t-lg max-h-max pt-6 pr-6 py-6 pl-6' src={image} alt='' />
                 </Link>
                 <div className='p-5 max-h-56 min-h-max'>
                   <Link to='#'>

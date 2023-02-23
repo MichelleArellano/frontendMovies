@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useLazyQuery } from '@apollo/client'
 import { GET_MOVIE_BY_ID } from '../services/Queries'
 import imgLogo from '../assets/logo.png'
 
 function Navbar () {
+  const navigate = useNavigate()
+  const location = useLocation()
   const [title, setTitle] = useState('')
   const [movieData, setMovieData] = useState('')
   const [getMovieById, { data, error }] = useLazyQuery(GET_MOVIE_BY_ID, {})
@@ -12,6 +14,12 @@ function Navbar () {
   if (data) {
     console.log('data', data)
     console.log('error', error)
+    console.log('location', location)
+  }
+
+  const logout = () => {
+    window.localStorage.removeItem('token')
+    navigate('/login')
   }
   return (
     <>
@@ -162,7 +170,7 @@ function Navbar () {
                         </div>
                       </li>
                       <li>
-                        <button className='focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900'>
+                        <button onClick={logout} className='focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900'>
                           Logout
                         </button>
                       </li>
@@ -175,7 +183,7 @@ function Navbar () {
           : window.location.pathname.includes('/movie_detail')
             ? (
               <>
-                <nav className='bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900'>
+                <nav className='bg-white border-gray-200 px-2 sm:px-4 py-2 rounded dark:bg-gray-900'>
                   <div className='container flex flex-wrap items-center justify-between mx-auto'>
                     <Link to='https://www.netflix.com/mx/' className='flex items-center'>
                       <img
@@ -184,6 +192,11 @@ function Navbar () {
                         alt='Logo'
                       />
                     </Link>
+                    <ul className='flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
+                      <li>
+                        <button type='button' onClick={() => navigate(-1)} className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>Back</button>
+                      </li>
+                    </ul>
                   </div>
                 </nav>
               </>
